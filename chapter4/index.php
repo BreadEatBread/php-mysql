@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+    <?php
+        $id = $_GET['id']??'HTML'; // id가 할당되지 않았을때 HTML을 우선적으로 띄우기
+    ?>
     <head>
         <meta charset="utf-8">
         <title>
@@ -11,19 +14,17 @@
         <ol>
             <li><a href="index.php?id=HTML">HTML</a></li>
             <li><a href="./?id=CSS">CSS</a></li> <!-- 자기 자신폴더를 뜯하는 ./ 를 사용 -->
-            <li><a href="?id=JavaScrit">JavaScript</a></li> <!-- 자기자신은 생략 가능 바로 ?=id ... 적어도 자동으로 자기자신에게 연결 -->
+            <li><a href="?id=JavaScript">JavaScript</a></li> <!-- 자기자신은 생략 가능 바로 ?=id ... 적어도 자동으로 자기자신에게 연결 -->
             <li><a href="#title">Title</a></li> <!-- title 이란 id 변수로 바로 이동 -->
         </ol>
 
         <h2 id="title">
             <?php
-                echo $_GET['id']??'HTML';
+                echo $id; // $_GET['id']      
             ?>
         </h2>
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
-            ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
-            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum 
-            dolore egoing eu fugiat nulla pariatur. Excepteur sint occaecat cupodatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
+        <?php
+            echo file_get_contents("data/$id"); // 메인화면에 자동으로 data 폴더안의 $id에 해당하는 파일내용 띄워두기
+        ?>
     </body>
 </html>
