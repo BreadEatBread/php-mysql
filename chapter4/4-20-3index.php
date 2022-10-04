@@ -22,7 +22,7 @@
         while($i < count($list)) {
             if($list[$i] != '.') {
                 if($list[$i] != '..') {
-                    echo "<li><a href=\"4-20-3index.php?id=$list[$i]\">$list[$i]</a></li>\n";
+                    echo "<li><a href=\"?id=$list[$i]\">$list[$i]</a></li>\n";
                 }
             }
             $i = $i + 1;

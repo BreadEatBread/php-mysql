@@ -1,30 +1,59 @@
+<?php
+    function print_title(){
+        if(isset($_GET['id'])) {
+            echo $_GET['id'];
+        }else{
+            echo "Welcome";
+        }
+    }
+
+    function print_description() {
+        if(isset($_GET['id'])) {
+            echo file_get_contents("data/".$_GET['id']);
+        }else{
+            echo "Hello, PHP";
+        }
+    }
+
+
+    function print_list() {
+        $list = scandir('./data');
+        $i = 0;
+        while($i < count($list)) {
+            if($list[$i] != '.') {
+                if($list[$i] != '..') {
+                    echo "<li><a href=\"?id=$list[$i]\">$list[$i]</a></li>\n";
+                }
+            }
+            $i = $i + 1;
+        }
+    }
+?>
 <!DOCTYPE html>
 <html>
-    <?php
-        $id = $_GET['id']??'HTML'; // id가 할당되지 않았을때 HTML을 우선적으로 띄우기
-    ?>
     <head>
         <meta charset="utf-8">
         <title>
-
+            <?php
+                print_title();
+            ?>
         </title>
     </head>
     <body>
-        <h1>WEB</h1>
+        <h1><a href = "4-20-3index.php">WEB</a></h1>
         <ol>
-            <li><a href="index.php?id=HTML">HTML</a></li>
-            <li><a href="./?id=CSS">CSS</a></li> <!-- 자기 자신폴더를 뜯하는 ./ 를 사용 -->
-            <li><a href="?id=JavaScript">JavaScript</a></li> <!-- 자기자신은 생략 가능 바로 ?=id ... 적어도 자동으로 자기자신에게 연결 -->
-            <li><a href="#title">Title</a></li> <!-- title 이란 id 변수로 바로 이동 -->
+            <?php
+                print_list();
+                ?>
         </ol>
 
-        <h2 id="title">
+        <h2>
             <?php
-                echo $id; // $_GET['id']      
+               print_title();    
             ?>
-        </h2>
-        <?php
-            echo file_get_contents("data/$id"); // 메인화면에 자동으로 data 폴더안의 $id에 해당하는 파일내용 띄워두기
-        ?>
+        </h2>       
+            <?php
+            print_description();
+            ?>       
     </body>
 </html>
