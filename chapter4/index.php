@@ -1,8 +1,11 @@
 <?php
     require_once('lib/print.php');
     require('view/top.php');
-?>
+?>      
+        <ol><?= $list ?></ol>
         <a href="create.php">create</a>
+        <h2><?= $article['title'] ?></h2>
+        <?= $article['description'] ?>
         <?php if(isset($_GET['id'])) { ?>
             <a href="update.php?id=<?= $_GET['id']; ?>">update</a>
             <form action="delete_process.php" method="post">
@@ -12,7 +15,7 @@
         <?php } ?>
         <h2>
             <?php
-               print_title();    
+               print_title();
             ?>
         </h2>       
             <?php
